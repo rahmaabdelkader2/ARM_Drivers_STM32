@@ -12,6 +12,13 @@ void SysTick_Init(void) {
     SysTick->CTRL = SYSTICK_CTRL_ENABLE | SYSTICK_CTRL_CLKSOURCE; // Enable SysTick, use processor clock
 }
 
+void SysTick_Start(void) {
+    SysTick->CTRL |= SYSTICK_CTRL_ENABLE; // Enable SysTick
+}
+
+void SysTick_Stop(void) {
+    SysTick->CTRL &= ~SYSTICK_CTRL_ENABLE; // Disable SysTick
+}
 void SysTick_Delay(u32 milliseconds) {
     for (u32 i = 0; i < milliseconds; i++) {
         SysTick->VAL = 0;  // Reset counter
